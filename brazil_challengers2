@@ -1,0 +1,89 @@
+CREATE TABLE Challenge2 (
+NomeTime char(100) PRIMARY KEY,
+Grupo char(1)
+)
+
+INSERT INTO challenge2(NomeTime, Grupo) VALUES ("LOUD", "A")
+
+SELECT * FROM challenge2
+INNER JOIN joga ON challenge2.NomeTime = joga.NomeTime
+
+
+CREATE TABLE GrupoA (
+NomeTime char(100) PRIMARY KEY,
+VitoriaA int,
+DerrotaA int,
+SPa int,
+PPa int,
+PCa int
+)
+
+SELECT * FROM `grupoa` WHERE DerrotaA="1"
+
+
+CREATE TABLE GrupoB (
+NomeTime char(100) PRIMARY KEY,
+SP int,
+PC int,
+Vitoria int,
+Derrota int,
+PP int
+)
+
+INSERT INTO `grupob`(`NomeTime`, `SP`, `PC`, `Vitoria`, `Derrota`, `PP`) VALUES ("Ninjas in Pyjamas","2","33","1","0","35")
+
+UPDATE `grupob` SET `SP`="8" ,`PC`="55",`Vitoria`="2",`PP`="63" WHERE NomeTime="Ninjas in Pyjamas"
+
+
+CREATE TABLE JogA (
+DataEntA date,
+IDjogA char(50) PRIMARY KEY,
+NomeJogA char(100),
+NomeTimeA char(100),
+FOREIGN KEY(NomeTime) REFERENCES GrupoA (NomeTime)
+)
+
+INSERT INTO `joga`(`DataEntA`, `IDjogA`, `NomeJogA`, `NomeTime`) VALUES ("2022-02-15","aspas","Erick Santos","LOUD")
+
+UPDATE `joga` SET `DataEntA`= "2022-02-03" WHERE IDjogA = "aspas"
+
+SELECT IDjogA FROM joga WHERE NomeTime="LOUD"
+
+
+CREATE TABLE JogB (
+IDjogB char(50) PRIMARY KEY,
+DataEntB date,
+NomeJogB char(50),
+NomeTime char(100),
+FOREIGN KEY(NomeTime) REFERENCES GrupoB (NomeTime)
+)
+
+INSERT INTO `jogb`(`IDjogB`, `DataEntB`, `NomeJog`, `NomeTime`) VALUES ("heat","2021-06-14","Olavo Marcelo","Keyd Stars");
+
+INSERT INTO `jogb`(`IDjogB`, `DataEntB`, `NomeJog`, `NomeTime`) VALUES ("murizzz","2021-06-14","Murillo Tuchtenhagen","Keyd Stars");
+
+INSERT INTO `jogb`(`IDjogB`, `DataEntB`, `NomeJog`, `NomeTime`) VALUES ("mwzera","2022-02-02","Leonardo Serrati","Keyd Stars");
+
+INSERT INTO `jogb`(`IDjogB`, `DataEntB`, `NomeJog`, `NomeTime`) VALUES ("RgLM","2022-05-05","Matheus Rodigoli","Keyd Stars");
+
+INSERT INTO `jogb`(`IDjogB`, `DataEntB`, `NomeJog`, `NomeTime`) VALUES ("RHZ","2022-05-05","Igor Baruti","Keyd Stars");
+
+
+CREATE TABLE GerenB (
+NomeGerenB char(100) PRIMARY KEY,
+IDgerenB char(50),
+DataEntB date,
+CargoB char(100),
+NomeTime char(100),
+FOREIGN KEY(NomeTime) REFERENCES GrupoB (NomeTime)
+)
+
+CREATE TABLE GerenA (
+NomeGerenA char(100) PRIMARY KEY,
+DataEntA date,
+CargoA char(100),
+IDgerenA char(50),
+NomeTime char(100),
+FOREIGN KEY(NomeTime) REFERENCES GrupoA (NomeTime)
+)
+
